@@ -2,9 +2,7 @@ package com.example.PPSIntershipRESTapi.controllers;
 
 import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.services.SeccionesEvaluacionPasantiaTutorEmpresarialService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,10 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarialController {
     @GetMapping("/get")
     public List<SeccionesEvaluacionPasantiaTutorEmpresarial> getAllSecciones(){
         return seccionesEvaluacionPasantiaTutorEmpresarialService.getAllSecciones();
+    }
+
+    @PutMapping("/put/{id}")
+    public SeccionesEvaluacionPasantiaTutorEmpresarial changeSeccion(@PathVariable Integer id, @RequestBody SeccionesEvaluacionPasantiaTutorEmpresarial seccionesEvaluacionPasantiaTutorEmpresarial){
+        return seccionesEvaluacionPasantiaTutorEmpresarialService.changeSeccion(id,seccionesEvaluacionPasantiaTutorEmpresarial);
     }
 }

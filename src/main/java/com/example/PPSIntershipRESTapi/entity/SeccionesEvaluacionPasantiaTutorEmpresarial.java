@@ -24,6 +24,6 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarial {
     private String seccionName;
 
     @Column(name = "maxnote")
-    private String maxNote;
+    private Integer maxNote;
 
 }

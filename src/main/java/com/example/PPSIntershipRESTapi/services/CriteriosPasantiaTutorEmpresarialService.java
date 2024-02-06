@@ -15,16 +15,7 @@ public class CriteriosPasantiaTutorEmpresarialService {
     public CriteriosPasantiaTutorEmpresarialService(CriteriosPasantiaTutorEmpresarialRepository criteriosPasantiaTutorEmpresarialRepository) {
         this.criteriosPasantiaTutorEmpresarialRepository = criteriosPasantiaTutorEmpresarialRepository;
     }
-    /*
-    public CriteriosPasantiaTutorEmpresarial createCriteriosPasantiaTutorEmpresarial(){
 
-    }
-    */
-    /*
-    public CriteriosPasantiaTutorEmpresarial CriteriosPasantiaTutorEmpresarialpdateCriteriosPasantiaTutorEmpresarial(){
-
-    }
-    */
     public ResponseEntity<MessageResponse> deleteCriteriosPasantiaTutorEmpresarialbyId(Integer id){
         criteriosPasantiaTutorEmpresarialRepository.deleteById(id);
         return ResponseEntity.ok(new MessageResponse("El criterio ha sido eliminado exitosamente"));
@@ -34,10 +25,17 @@ public class CriteriosPasantiaTutorEmpresarialService {
         return (List<CriteriosPasantiaTutorEmpresarial>) criteriosPasantiaTutorEmpresarialRepository.findAll();
     }
 
-    /*
-        public CriteriosPasantiaTutorEmpresarial getCriteriosPasantiaTutorEmpresarialById(){
+    public List<CriteriosPasantiaTutorEmpresarial> getCriteriosPasantiaTutorEmpresarialBySeccion(Integer id){
+        return criteriosPasantiaTutorEmpresarialRepository.getCriteriosPasantiaTutorEmpresarialBySeccion(id);
+    }
 
+    public CriteriosPasantiaTutorEmpresarial changeCriteria(Integer criteriaId, CriteriosPasantiaTutorEmpresarial criteriosPasantiaTutorEmpresarial){
+        CriteriosPasantiaTutorEmpresarial criteriaSearch = criteriosPasantiaTutorEmpresarialRepository.findById(criteriaId).orElse(null);
+        if(criteriaSearch != null){
+            criteriaSearch.setCriteriaName(criteriosPasantiaTutorEmpresarial.getCriteriaName());
+            criteriaSearch.setMaxNote(criteriosPasantiaTutorEmpresarial.getMaxNote());
+            return criteriosPasantiaTutorEmpresarialRepository.save(criteriaSearch);
         }
-
-*/
+        return null;
+    }
 }

@@ -1,10 +1,9 @@
 package com.example.PPSIntershipRESTapi.controllers;
 
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
+import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.services.CriteriosPasantiaTutorEmpresarialService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,15 @@ public class CriteriosPasantiaTutorEmpresarialController {
     @GetMapping("get")
     public List<CriteriosPasantiaTutorEmpresarial> getAllCriteriosPasantiaTutorEmpresarial(){
         return criteriosPasantiaTutorEmpresarialService.getAllCriteriosPasantiaTutorEmpresarial();
+    }
+
+    @GetMapping("get/by/seccion/{id}")
+    public List<CriteriosPasantiaTutorEmpresarial> getCriteriosPasantiaTutorEmpresarialBySeccion(@PathVariable Integer id){
+        return criteriosPasantiaTutorEmpresarialService.getCriteriosPasantiaTutorEmpresarialBySeccion(id);
+    }
+
+    @PutMapping("/put/{id}")
+    public CriteriosPasantiaTutorEmpresarial changeCriteria(@PathVariable Integer id, @RequestBody CriteriosPasantiaTutorEmpresarial criteriosPasantiaTutorEmpresarial){
+        return criteriosPasantiaTutorEmpresarialService.changeCriteria(id,criteriosPasantiaTutorEmpresarial);
     }
 }
