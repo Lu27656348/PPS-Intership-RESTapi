@@ -1,6 +1,7 @@
 package com.example.PPSIntershipRESTapi.controllers;
 
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
+import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.services.CriteriosPasantiaTutorAcademicoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,13 @@ public class CriteriosPasantiaTutorAcademicoController {
         return criteriosPasantiaTutorAcademicoServiceService.getAllCriteriosPasantiaTutorAcademico();
     }
 
+    @GetMapping("/get/by/school/{schoolName}")
+    public List<CriteriosPasantiaTutorAcademico> getAllCriteriosPasantiaTutorAcademicoBySchool(@PathVariable String schoolName){
+        return criteriosPasantiaTutorAcademicoServiceService.getAllCriteriosPasantiaTutorAcademicoBySchool(schoolName);
+    }
+
+
+
     @GetMapping("get/by/seccion/{id}")
     public List<CriteriosPasantiaTutorAcademico> getCriteriosPasantiaTutorAcademicoBySeccion(@PathVariable Integer id){
         return criteriosPasantiaTutorAcademicoServiceService.getCriteriosPasantiaTutorAcademicoBySeccion(id);
@@ -29,5 +37,10 @@ public class CriteriosPasantiaTutorAcademicoController {
     @PutMapping("/put/{id}")
     public CriteriosPasantiaTutorAcademico changeCriteria(@PathVariable Integer id, @RequestBody CriteriosPasantiaTutorAcademico criteriosPasantiaTutorAcademico){
         return criteriosPasantiaTutorAcademicoServiceService.changeCriteria(id,criteriosPasantiaTutorAcademico);
+    }
+
+    @PostMapping("/post")
+    public CriteriosPasantiaTutorAcademico createCriteria(@RequestBody CriteriosPasantiaTutorAcademico criteriaData){
+        return criteriosPasantiaTutorAcademicoServiceService.createCriteria(criteriaData);
     }
 }

@@ -24,9 +24,21 @@ public class SeccionesEvaluacionPasantiaTutorAcademicoController {
         return seccionesEvaluacionPasantiaTutorAcademicoService.getAllSecciones();
     }
 
+    @GetMapping("/get/by/school/{schoolName}")
+    public List<SeccionesEvaluacionPasantiaTutorAcademico> getAllSeccionesBySchool(@PathVariable String schoolName){
+        return seccionesEvaluacionPasantiaTutorAcademicoService.getAllSeccionesBySchool(schoolName);
+    }
+
+
+
     @PutMapping("/put/{id}")
     public SeccionesEvaluacionPasantiaTutorAcademico changeSeccion(@PathVariable Integer id, @RequestBody SeccionesEvaluacionPasantiaTutorAcademico seccionesEvaluacionPasantiaTutorAcademico){
         return seccionesEvaluacionPasantiaTutorAcademicoService.changeSeccion(id,seccionesEvaluacionPasantiaTutorAcademico);
+    }
+
+    @PostMapping("/post")
+    public SeccionesEvaluacionPasantiaTutorAcademico createSeccion(@RequestBody SeccionesEvaluacionPasantiaTutorAcademico seccionData){
+        return seccionesEvaluacionPasantiaTutorAcademicoService.createSeccion(seccionData);
     }
 
 }

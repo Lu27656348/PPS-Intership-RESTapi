@@ -1,5 +1,6 @@
 package com.example.PPSIntershipRESTapi.repository;
 
+import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -18,4 +19,12 @@ public interface CriteriosPasantiaTutorEmpresarialRepository extends CrudReposit
             nativeQuery = true
     )
     public List<CriteriosPasantiaTutorEmpresarial> getCriteriosPasantiaTutorEmpresarialBySeccion(@Param("seccionId") Integer seccionId);
+
+    @Query(
+            value = "SELECT *\n" +
+                    "FROM criteriosevaluacionpasantiatutorempresarial\n" +
+                    "WHERE schoolname = :schoolName",
+            nativeQuery = true
+    )
+    public List<CriteriosPasantiaTutorEmpresarial> getAllCriteriosPasantiaTutorEmpresarialBySchool(@Param("schoolName") String schoolName);
 }

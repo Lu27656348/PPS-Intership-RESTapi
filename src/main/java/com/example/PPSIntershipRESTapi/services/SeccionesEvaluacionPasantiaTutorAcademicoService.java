@@ -16,10 +16,21 @@ public class SeccionesEvaluacionPasantiaTutorAcademicoService {
         this.seccionesEvaluacionPasantiaTutorAcademicoRepository = seccionesEvaluacionPasantiaTutorAcademicoRepository;
     }
 
+    public SeccionesEvaluacionPasantiaTutorAcademico createSeccion(SeccionesEvaluacionPasantiaTutorAcademico seccionData){
+        return seccionesEvaluacionPasantiaTutorAcademicoRepository.save(seccionData);
+    }
+
 
     public List<SeccionesEvaluacionPasantiaTutorAcademico> getAllSecciones(){
         return (List<SeccionesEvaluacionPasantiaTutorAcademico>) seccionesEvaluacionPasantiaTutorAcademicoRepository.findAll();
     }
+
+    public List<SeccionesEvaluacionPasantiaTutorAcademico> getAllSeccionesBySchool(String schoolName){
+        return  seccionesEvaluacionPasantiaTutorAcademicoRepository.getAllSeccionesBySchool(schoolName);
+    }
+
+
+
 
     public SeccionesEvaluacionPasantiaTutorAcademico changeSeccion (Integer id, SeccionesEvaluacionPasantiaTutorAcademico seccionesEvaluacionPasantiaTutorAcademico){
         SeccionesEvaluacionPasantiaTutorAcademico seccionSearch = seccionesEvaluacionPasantiaTutorAcademicoRepository.findById(id).orElse(null);

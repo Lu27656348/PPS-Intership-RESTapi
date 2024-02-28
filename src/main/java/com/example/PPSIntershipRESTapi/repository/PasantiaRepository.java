@@ -19,6 +19,15 @@ public interface PasantiaRepository extends CrudRepository<Pasantia, Integer> {
     public List<Pasantia> getPasantiasByStatusCode(@Param("statuscode") Integer statuscode);
 
     @Query(
+            value = "SELECT Pa.*\n" +
+                    "FROM Pasantia AS Pa, Users AS U\n" +
+                    "WHERE Pa.intershipstatuscode = :statuscode\n" +
+                    "AND U.userDNI = Pa.studentDNI\n" +
+                    "AND U.schoolName = :schoolName",
+            nativeQuery = true
+    )
+    public List<Pasantia> getPasantiasByStatusCodeAndSchool(@Param("statuscode") Integer statuscode, @Param("schoolName") String schoolName);
+    @Query(
             value = "SELECT crearPropuestaPasantia(:intershiptitle, :enterpriseId, :intershipstartdate, :studentDNI, :corporateTutorDNI, :intershipCompletionDate)",
             nativeQuery = true
     )
@@ -57,5 +66,25 @@ public interface PasantiaRepository extends CrudRepository<Pasantia, Integer> {
             nativeQuery = true
     )
     public Pasantia getStudentCurrentPasantia(@Param("studentDNI") String studentDNI);
+
+    @Query(
+            value = "SELECT *\n" +
+                    "FROM (\n" +
+                    "    SELECT Est.studentDNI\n" +
+                    "    FROM students AS Est \n" +
+                    "    LEFT JOIN Pasantia ON Est.studentDNI = Pasantia.studentDNI\n" +
+                    "    WHERE Pasantia.studentDNI IS NULL\n" +
+                    "\n" +
+                    "    UNION\n" +
+                    "\n" +
+                    "    SELECT Est.studentDNI\n" +
+                    "\tFROM students AS Est\n" +
+                    "\tWHERE (SELECT COUNT(*) FROM Pasantia  AS Pa WHERE Pa.studentDNI = Est.studentDNI AND Pa.intershipstatuscode NOT IN (400,100,401)) = 0\n" +
+                    "\t\n" +
+                    ") AS TableSt\n" +
+                    "GROUP BY studentDNI",
+            nativeQuery = true
+    )
+    public List<String> getStudentForProposalPending();
 
 }

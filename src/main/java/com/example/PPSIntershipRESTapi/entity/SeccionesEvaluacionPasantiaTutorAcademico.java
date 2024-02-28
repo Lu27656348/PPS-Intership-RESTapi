@@ -1,9 +1,6 @@
 package com.example.PPSIntershipRESTapi.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SeccionesEvaluacionPasantiaTutorAcademico {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seccionid")
     private Integer seccionId;
 
@@ -25,4 +23,9 @@ public class SeccionesEvaluacionPasantiaTutorAcademico {
 
     @Column(name = "maxnote")
     private Integer maxNote;
+
+    @Column(name = "schoolname")
+    private String schoolName;
+
+
 }

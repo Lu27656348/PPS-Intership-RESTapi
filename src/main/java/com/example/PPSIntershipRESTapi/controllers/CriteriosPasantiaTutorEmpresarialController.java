@@ -1,5 +1,6 @@
 package com.example.PPSIntershipRESTapi.controllers;
 
+import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.services.CriteriosPasantiaTutorEmpresarialService;
@@ -31,4 +32,16 @@ public class CriteriosPasantiaTutorEmpresarialController {
     public CriteriosPasantiaTutorEmpresarial changeCriteria(@PathVariable Integer id, @RequestBody CriteriosPasantiaTutorEmpresarial criteriosPasantiaTutorEmpresarial){
         return criteriosPasantiaTutorEmpresarialService.changeCriteria(id,criteriosPasantiaTutorEmpresarial);
     }
+
+
+    @GetMapping("/get/by/school/{schoolName}")
+    public List<CriteriosPasantiaTutorEmpresarial> getAllCriteriosPasantiaTutorEmpresarialBySchool(@PathVariable String schoolName){
+        return criteriosPasantiaTutorEmpresarialService.getAllCriteriosPasantiaTutorEmpresarialBySchool(schoolName);
+    }
+    @PostMapping("/post")
+    public CriteriosPasantiaTutorEmpresarial createCriteria(@RequestBody CriteriosPasantiaTutorEmpresarial criteriaData){
+        return criteriosPasantiaTutorEmpresarialService.createCriteria(criteriaData);
+    }
+
+
 }

@@ -63,4 +63,16 @@ public class PasantiaController {
     public Pasantia getStudentCurrentPasantia(@PathVariable String id){
         return pasantiaService.getStudentCurrentPasantia(id);
     }
+
+
+    @GetMapping("/status/{id}/school/{schoolname}")
+    public List<Pasantia> getPasantiasByStatusCodeAndSchool(@PathVariable Integer id,@PathVariable String schoolname){
+        System.out.println(schoolname);
+        return pasantiaService.getPasantiasByStatusCodeAndSchool(id,schoolname);
+    }
+    @GetMapping("/proposal/pending")
+    public List<String> getStudentForProposalPending(){
+        return pasantiaService.getStudentForProposalPending();
+    }
+
 }

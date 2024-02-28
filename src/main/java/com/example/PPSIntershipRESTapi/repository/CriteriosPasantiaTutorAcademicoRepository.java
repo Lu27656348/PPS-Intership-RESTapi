@@ -20,4 +20,11 @@ public interface CriteriosPasantiaTutorAcademicoRepository extends CrudRepositor
     )
     public List<CriteriosPasantiaTutorAcademico> getCriteriosPasantiaTutorAcademicoBySeccion(@Param("seccionId") Integer seccionId);
 
+    @Query(
+            value = "SELECT *\n" +
+                    "FROM criteriosevaluacionpasantiatutoracademico\n" +
+                    "WHERE schoolname = :schoolName",
+            nativeQuery = true
+    )
+    public List<CriteriosPasantiaTutorAcademico> getAllCriteriosPasantiaTutorAcademicoBySchool(@Param("schoolName") String schoolName);
 }

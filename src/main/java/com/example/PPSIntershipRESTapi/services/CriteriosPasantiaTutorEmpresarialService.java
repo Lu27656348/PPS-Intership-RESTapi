@@ -1,5 +1,6 @@
 package com.example.PPSIntershipRESTapi.services;
 
+import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.repository.CriteriosPasantiaTutorEmpresarialRepository;
 import com.example.PPSIntershipRESTapi.responses.MessageResponse;
@@ -37,5 +38,13 @@ public class CriteriosPasantiaTutorEmpresarialService {
             return criteriosPasantiaTutorEmpresarialRepository.save(criteriaSearch);
         }
         return null;
+    }
+
+
+    public List<CriteriosPasantiaTutorEmpresarial> getAllCriteriosPasantiaTutorEmpresarialBySchool(String schoolName){
+        return criteriosPasantiaTutorEmpresarialRepository.getAllCriteriosPasantiaTutorEmpresarialBySchool(schoolName);
+    }
+    public CriteriosPasantiaTutorEmpresarial createCriteria(CriteriosPasantiaTutorEmpresarial criteriaData){
+        return criteriosPasantiaTutorEmpresarialRepository.save(criteriaData);
     }
 }

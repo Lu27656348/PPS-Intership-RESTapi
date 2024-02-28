@@ -10,5 +10,5 @@ public class PpsIntershipResTapiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PpsIntershipResTapiApplication.class, args);
 	}
-//   "toEmailAddress": "alexledezmamv@gmail.com"
+
 }

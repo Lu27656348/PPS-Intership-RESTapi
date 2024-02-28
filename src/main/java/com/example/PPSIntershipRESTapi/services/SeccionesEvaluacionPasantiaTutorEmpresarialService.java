@@ -1,5 +1,6 @@
 package com.example.PPSIntershipRESTapi.services;
 
+import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.repository.SeccionesEvaluacionPasantiaTutorEmpresarialRepository;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,12 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarialService {
         }
         return null;
     }
+
+    public SeccionesEvaluacionPasantiaTutorEmpresarial createSeccion(SeccionesEvaluacionPasantiaTutorEmpresarial seccionData){
+        return seccionesEvaluacionPasantiaTutorEmpresarialRepository.save(seccionData);
+    }
+    public List<SeccionesEvaluacionPasantiaTutorEmpresarial> getAllSeccionesBySchool(String schoolName){
+        return  seccionesEvaluacionPasantiaTutorEmpresarialRepository.getAllSeccionesBySchool(schoolName);
+    }
+
 }

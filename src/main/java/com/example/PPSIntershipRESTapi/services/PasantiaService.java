@@ -51,4 +51,12 @@ public class PasantiaService {
     public Pasantia getStudentCurrentPasantia(String studentDNI){
         return pasantiaRepository.getStudentCurrentPasantia(studentDNI);
     }
+
+    public List<Pasantia> getPasantiasByStatusCodeAndSchool(Integer id, String schoolName){
+        return pasantiaRepository.getPasantiasByStatusCodeAndSchool(id,schoolName);
+    }
+
+    public List<String> getStudentForProposalPending(){
+        return pasantiaRepository.getStudentForProposalPending();
+    }
 }

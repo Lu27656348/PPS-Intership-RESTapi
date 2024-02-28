@@ -1,5 +1,6 @@
 package com.example.PPSIntershipRESTapi.controllers;
 
+import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.services.SeccionesEvaluacionPasantiaTutorEmpresarialService;
 import org.springframework.web.bind.annotation.*;
@@ -25,4 +26,18 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarialController {
     public SeccionesEvaluacionPasantiaTutorEmpresarial changeSeccion(@PathVariable Integer id, @RequestBody SeccionesEvaluacionPasantiaTutorEmpresarial seccionesEvaluacionPasantiaTutorEmpresarial){
         return seccionesEvaluacionPasantiaTutorEmpresarialService.changeSeccion(id,seccionesEvaluacionPasantiaTutorEmpresarial);
     }
+
+
+
+
+    @GetMapping("/get/by/school/{schoolName}")
+    public List<SeccionesEvaluacionPasantiaTutorEmpresarial> getAllSeccionesBySchool(@PathVariable String schoolName){
+        return seccionesEvaluacionPasantiaTutorEmpresarialService.getAllSeccionesBySchool(schoolName);
+    }
+    @PostMapping("/post")
+    public SeccionesEvaluacionPasantiaTutorEmpresarial createSeccion(@RequestBody SeccionesEvaluacionPasantiaTutorEmpresarial seccionData){
+        return seccionesEvaluacionPasantiaTutorEmpresarialService.createSeccion(seccionData);
+    }
+
+
 }
