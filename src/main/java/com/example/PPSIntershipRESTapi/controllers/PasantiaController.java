@@ -1,10 +1,17 @@
 package com.example.PPSIntershipRESTapi.controllers;
 
+import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
+import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.entity.Pasantia;
+import com.example.PPSIntershipRESTapi.interfaces.CriteriosPasantiaTutorAcademicoProjection;
+import com.example.PPSIntershipRESTapi.request.CreateEvaluationCriteria;
 import com.example.PPSIntershipRESTapi.request.CreatePasantiaRequest;
 import com.example.PPSIntershipRESTapi.request.EvaluateIntershipReportRequest;
+import com.example.PPSIntershipRESTapi.responses.MessageResponse;
 import com.example.PPSIntershipRESTapi.services.PasantiaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.List;
 
@@ -70,9 +77,46 @@ public class PasantiaController {
         System.out.println(schoolname);
         return pasantiaService.getPasantiasByStatusCodeAndSchool(id,schoolname);
     }
-    @GetMapping("/proposal/pending")
-    public List<String> getStudentForProposalPending(){
-        return pasantiaService.getStudentForProposalPending();
+    @GetMapping("/proposal/pending/{schoolName}")
+    public List<String> getStudentForProposalPending(@PathVariable String schoolName){
+        return pasantiaService.getStudentForProposalPending(schoolName);
     }
+
+    /* Generar Evaluacion de Tutores */
+    @PostMapping("/generar/evaluacion/tutor/academico")
+    public ResponseEntity<MessageResponse> asociarCriterioConEvaluacionDeTutorAcademico(@RequestBody CreateEvaluationCriteria createEvaluationCriteria){
+        pasantiaService.asociarCriterioConEvaluacionDeTutorAcademico(createEvaluationCriteria);
+        return ResponseEntity.ok(new MessageResponse("Criterio asociado exitosamente"));
+    }
+
+    @PostMapping("/generar/evaluacion/tutor/empresarial")
+    public ResponseEntity<MessageResponse> asociarCriterioConEvaluacionDeTutorEmpresarial(@RequestBody CreateEvaluationCriteria createEvaluationCriteria){
+        pasantiaService.asociarCriterioConEvaluacionDeTutorEmpresarial(createEvaluationCriteria);
+        return ResponseEntity.ok(new MessageResponse("Criterio asociado exitosamente"));
+    }
+
+
+
+    @PostMapping("/obtener/evaluacion/tutor/academico")
+    public ResponseEntity<List<CriteriosPasantiaTutorAcademicoProjection>> obtenerCriterioEvaluacionTutorAcademico(@RequestBody CreateEvaluationCriteria createEvaluationCriteria){
+        return ResponseEntity.ok(pasantiaService.obtenerCriterioEvaluacionTutorAcademico(createEvaluationCriteria));
+    }
+
+    @PostMapping("/obtener/evaluacion/tutor/empresarial")
+    public ResponseEntity<List<CriteriosPasantiaTutorAcademicoProjection>> obtenerCriterioEvaluacionTutorEmpresarial(@RequestBody CreateEvaluationCriteria createEvaluationCriteria){
+        return ResponseEntity.ok(pasantiaService.obtenerCriterioEvaluacionTutorEmpresarial(createEvaluationCriteria));
+    }
+
+
+    @PostMapping("/calificar/evaluacion/tutor/academico")
+    public ResponseEntity<Boolean> calificarCriterioEvaluacionTutorAcademico(@RequestBody CreateEvaluationCriteria createEvaluationCriteria){
+        return pasantiaService.calificarCriterioEvaluacionTutorAcademico(createEvaluationCriteria);
+    }
+
+    @PostMapping("/calificar/evaluacion/tutor/empresarial")
+    public ResponseEntity<Boolean> calificarCriterioEvaluacionTutorEmpresarial(@RequestBody CreateEvaluationCriteria createEvaluationCriteria){
+        return pasantiaService.calificarCriterioEvaluacionTutorEmpresarial(createEvaluationCriteria);
+    }
+
 
 }

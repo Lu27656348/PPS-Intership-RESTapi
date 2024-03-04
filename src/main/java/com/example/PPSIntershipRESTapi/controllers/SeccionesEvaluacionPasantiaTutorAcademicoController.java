@@ -41,4 +41,9 @@ public class SeccionesEvaluacionPasantiaTutorAcademicoController {
         return seccionesEvaluacionPasantiaTutorAcademicoService.createSeccion(seccionData);
     }
 
+    @GetMapping("/get/by/{id}")
+    public SeccionesEvaluacionPasantiaTutorAcademico getSeccionById(@PathVariable Integer id){
+        return seccionesEvaluacionPasantiaTutorAcademicoService.getSeccionbyId(id);
+    }
+
 }

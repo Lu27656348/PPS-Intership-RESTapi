@@ -22,6 +22,12 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarialController {
         return seccionesEvaluacionPasantiaTutorEmpresarialService.getAllSecciones();
     }
 
+    @GetMapping("/get/by/{id}")
+    public SeccionesEvaluacionPasantiaTutorEmpresarial getSeccionById(@PathVariable Integer id){
+        return seccionesEvaluacionPasantiaTutorEmpresarialService.getSeccionById(id);
+    }
+
+
     @PutMapping("/put/{id}")
     public SeccionesEvaluacionPasantiaTutorEmpresarial changeSeccion(@PathVariable Integer id, @RequestBody SeccionesEvaluacionPasantiaTutorEmpresarial seccionesEvaluacionPasantiaTutorEmpresarial){
         return seccionesEvaluacionPasantiaTutorEmpresarialService.changeSeccion(id,seccionesEvaluacionPasantiaTutorEmpresarial);

@@ -4,6 +4,7 @@ import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorAc
 import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.repository.SeccionesEvaluacionPasantiaTutorEmpresarialRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarialService {
     }
     public List<SeccionesEvaluacionPasantiaTutorEmpresarial> getAllSeccionesBySchool(String schoolName){
         return  seccionesEvaluacionPasantiaTutorEmpresarialRepository.getAllSeccionesBySchool(schoolName);
+    }
+
+    public SeccionesEvaluacionPasantiaTutorEmpresarial getSeccionById( Integer id ){
+        return seccionesEvaluacionPasantiaTutorEmpresarialRepository.findById(id).orElse(null);
     }
 
 }
