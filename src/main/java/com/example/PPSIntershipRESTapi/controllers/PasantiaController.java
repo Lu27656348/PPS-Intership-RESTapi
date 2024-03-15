@@ -4,6 +4,8 @@ import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.entity.Pasantia;
 import com.example.PPSIntershipRESTapi.interfaces.CriteriosPasantiaTutorAcademicoProjection;
+import com.example.PPSIntershipRESTapi.interfaces.ObtenerCalificacionTutorEmpresarial;
+import com.example.PPSIntershipRESTapi.interfaces.ObtenerEvaluacionTutorAcademico;
 import com.example.PPSIntershipRESTapi.request.CreateEvaluationCriteria;
 import com.example.PPSIntershipRESTapi.request.CreatePasantiaRequest;
 import com.example.PPSIntershipRESTapi.request.EvaluateIntershipReportRequest;
@@ -118,5 +120,14 @@ public class PasantiaController {
         return pasantiaService.calificarCriterioEvaluacionTutorEmpresarial(createEvaluationCriteria);
     }
 
+    @GetMapping("/obtener/calificacion/evaluacion/tutor/academico/{intershipId}/{tutorDNI}")
+    public ResponseEntity<ObtenerEvaluacionTutorAcademico> ObtenerEvaluacionTutorAcademico(@PathVariable Integer intershipId, @PathVariable String tutorDNI){
+        return ResponseEntity.ok(pasantiaService.ObtenerEvaluacionTutorAcademico(intershipId,tutorDNI));
+    }
+
+    @GetMapping("/obtener/calificacion/evaluacion/tutor/empresarial/{intershipId}/{tutorDNI}")
+    public ResponseEntity<ObtenerCalificacionTutorEmpresarial> ObtenerCalificacionTutorEmpresarial(@PathVariable Integer intershipId, @PathVariable String tutorDNI){
+        return ResponseEntity.ok(pasantiaService.ObtenerCalificacionTutorEmpresarial(intershipId,tutorDNI));
+    }
 
 }

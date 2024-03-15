@@ -4,6 +4,8 @@ import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.entity.Pasantia;
 import com.example.PPSIntershipRESTapi.interfaces.CriteriosPasantiaTutorAcademicoProjection;
+import com.example.PPSIntershipRESTapi.interfaces.ObtenerCalificacionTutorEmpresarial;
+import com.example.PPSIntershipRESTapi.interfaces.ObtenerEvaluacionTutorAcademico;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -168,4 +170,21 @@ public interface PasantiaRepository extends CrudRepository<Pasantia, Integer> {
             @Param("criteriaNote") Integer maxNote
     );
 
+    @Query(
+            value = "SELECT *\n" +
+                    "FROM evaluaciontutorempresarial\n" +
+                    "WHERE intershipId = :intershipId\n" +
+                    "AND externalpersonnelDNI = :externalPersonnelDNI",
+            nativeQuery = true
+    )
+    public ObtenerCalificacionTutorEmpresarial ObtenerCalificacionTutorEmpresarial(@Param("intershipId") Integer intershipId, @Param("externalPersonnelDNI") String externalPersonnelDNI);
+
+    @Query(
+            value = "SELECT *\n" +
+                    "FROM evaluaciontutoracademico\n" +
+                    "WHERE intershipId = :intershipId\n" +
+                    "AND professorDNI = :professorDNI",
+            nativeQuery = true
+    )
+    public ObtenerEvaluacionTutorAcademico ObtenerEvaluacionTutorAcademico(@Param("intershipId") Integer intershipId, @Param("professorDNI") String professorDNI);
 }

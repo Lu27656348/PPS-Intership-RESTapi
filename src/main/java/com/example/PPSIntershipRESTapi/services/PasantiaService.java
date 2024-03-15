@@ -4,12 +4,16 @@ import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.entity.Pasantia;
 import com.example.PPSIntershipRESTapi.interfaces.CriteriosPasantiaTutorAcademicoProjection;
+import com.example.PPSIntershipRESTapi.interfaces.ObtenerCalificacionTutorEmpresarial;
+import com.example.PPSIntershipRESTapi.interfaces.ObtenerEvaluacionTutorAcademico;
 import com.example.PPSIntershipRESTapi.repository.PasantiaRepository;
 import com.example.PPSIntershipRESTapi.request.CreateEvaluationCriteria;
 import com.example.PPSIntershipRESTapi.request.CreatePasantiaRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -124,5 +128,13 @@ public class PasantiaService {
                     createEvaluationCriteria.getCriteriaNote()
                 )
         );
+    }
+
+    public ObtenerEvaluacionTutorAcademico ObtenerEvaluacionTutorAcademico(Integer intershipId, String tutorDNI){
+        return pasantiaRepository.ObtenerEvaluacionTutorAcademico(intershipId,tutorDNI);
+    }
+
+    public ObtenerCalificacionTutorEmpresarial ObtenerCalificacionTutorEmpresarial(Integer intershipId, String tutorDNI){
+        return pasantiaRepository.ObtenerCalificacionTutorEmpresarial(intershipId,tutorDNI);
     }
 }
