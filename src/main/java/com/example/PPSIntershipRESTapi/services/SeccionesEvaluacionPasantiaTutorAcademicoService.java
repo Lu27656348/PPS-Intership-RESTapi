@@ -47,4 +47,13 @@ public class SeccionesEvaluacionPasantiaTutorAcademicoService {
         return null;
     }
 
+    public SeccionesEvaluacionPasantiaTutorAcademico changeStatus (Integer id, Boolean status){
+        SeccionesEvaluacionPasantiaTutorAcademico seccionSearch = seccionesEvaluacionPasantiaTutorAcademicoRepository.findById(id).orElse(null);
+        if(seccionSearch != null){
+            seccionSearch.setStatus(status);
+            return seccionesEvaluacionPasantiaTutorAcademicoRepository.save(seccionSearch);
+        }
+        return null;
+    }
+
 }

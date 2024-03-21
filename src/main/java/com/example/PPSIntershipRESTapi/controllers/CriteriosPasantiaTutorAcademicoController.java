@@ -1,6 +1,7 @@
 package com.example.PPSIntershipRESTapi.controllers;
 
 import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorAcademico;
+import com.example.PPSIntershipRESTapi.entity.CriteriosPasantiaTutorEmpresarial;
 import com.example.PPSIntershipRESTapi.entity.SeccionesEvaluacionPasantiaTutorAcademico;
 import com.example.PPSIntershipRESTapi.services.CriteriosPasantiaTutorAcademicoService;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +43,10 @@ public class CriteriosPasantiaTutorAcademicoController {
     @PostMapping("/post")
     public CriteriosPasantiaTutorAcademico createCriteria(@RequestBody CriteriosPasantiaTutorAcademico criteriaData){
         return criteriosPasantiaTutorAcademicoServiceService.createCriteria(criteriaData);
+    }
+
+    @PutMapping("/put/{id}/status/{status}")
+    public CriteriosPasantiaTutorAcademico changeCriteriaStatus(@PathVariable Integer id, @PathVariable Boolean status){
+        return criteriosPasantiaTutorAcademicoServiceService.changeCriteriaStatus(id,status);
     }
 }

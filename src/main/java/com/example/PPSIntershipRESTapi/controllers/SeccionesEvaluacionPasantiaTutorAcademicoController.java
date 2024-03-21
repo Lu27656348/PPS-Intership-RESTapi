@@ -46,4 +46,9 @@ public class SeccionesEvaluacionPasantiaTutorAcademicoController {
         return seccionesEvaluacionPasantiaTutorAcademicoService.getSeccionbyId(id);
     }
 
+    @PutMapping("/put/{id}/status/{status}")
+    public SeccionesEvaluacionPasantiaTutorAcademico changeSeccion(@PathVariable Integer id, @PathVariable Boolean status){
+        return seccionesEvaluacionPasantiaTutorAcademicoService.changeStatus(id,status);
+    }
+
 }

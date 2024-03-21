@@ -30,6 +30,15 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarialService {
         return null;
     }
 
+    public SeccionesEvaluacionPasantiaTutorEmpresarial changeStatus (Integer id, Boolean status){
+        SeccionesEvaluacionPasantiaTutorEmpresarial seccionSearch = seccionesEvaluacionPasantiaTutorEmpresarialRepository.findById(id).orElse(null);
+        if(seccionSearch != null){
+            seccionSearch.setStatus(status);
+            return seccionesEvaluacionPasantiaTutorEmpresarialRepository.save(seccionSearch);
+        }
+        return null;
+    }
+
     public SeccionesEvaluacionPasantiaTutorEmpresarial createSeccion(SeccionesEvaluacionPasantiaTutorEmpresarial seccionData){
         return seccionesEvaluacionPasantiaTutorEmpresarialRepository.save(seccionData);
     }

@@ -33,6 +33,11 @@ public class CriteriosPasantiaTutorEmpresarialController {
         return criteriosPasantiaTutorEmpresarialService.changeCriteria(id,criteriosPasantiaTutorEmpresarial);
     }
 
+    @PutMapping("/put/{id}/status/{status}")
+    public CriteriosPasantiaTutorEmpresarial changeCriteriaStatus(@PathVariable Integer id, @PathVariable Boolean status){
+        return criteriosPasantiaTutorEmpresarialService.changeCriteriaStatus(id,status);
+    }
+
 
     @GetMapping("/get/by/school/{schoolName}")
     public List<CriteriosPasantiaTutorEmpresarial> getAllCriteriosPasantiaTutorEmpresarialBySchool(@PathVariable String schoolName){

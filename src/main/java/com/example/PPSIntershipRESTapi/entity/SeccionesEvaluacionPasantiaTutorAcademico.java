@@ -27,5 +27,7 @@ public class SeccionesEvaluacionPasantiaTutorAcademico {
     @Column(name = "schoolname")
     private String schoolName;
 
+    @Column(name = "status")
+    private Boolean status;
 
 }

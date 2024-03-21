@@ -33,6 +33,11 @@ public class SeccionesEvaluacionPasantiaTutorEmpresarialController {
         return seccionesEvaluacionPasantiaTutorEmpresarialService.changeSeccion(id,seccionesEvaluacionPasantiaTutorEmpresarial);
     }
 
+    @PutMapping("/put/{id}/status/{status}")
+    public SeccionesEvaluacionPasantiaTutorEmpresarial changeSeccion(@PathVariable Integer id, @PathVariable Boolean status){
+        return seccionesEvaluacionPasantiaTutorEmpresarialService.changeStatus(id,status);
+    }
+
 
 
 

@@ -53,4 +53,13 @@ public class CriteriosPasantiaTutorAcademicoService {
         return criteriosPasantiaTutorAcademicoRepository.save(criteriaData);
     }
 
+    public CriteriosPasantiaTutorAcademico changeCriteriaStatus(Integer id, Boolean status){
+        CriteriosPasantiaTutorAcademico criteriaSearch = criteriosPasantiaTutorAcademicoRepository.findById(id).orElse(null);
+        if(criteriaSearch != null){
+            criteriaSearch.setStatus(status);
+            return criteriosPasantiaTutorAcademicoRepository.save(criteriaSearch);
+        }
+        return null;
+    }
+
 }
